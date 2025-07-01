@@ -1,4 +1,4 @@
-## ⚙️ Tech Stack
+⚙️ Tech Stack
 
 | Frontend             | Backend/API                  | Database       | Deployment |
 |----------------------|------------------------------|----------------|------------|
@@ -6,7 +6,7 @@
 
 ---
 
-## 📝 Form Fields
+📝 Form Fields
 
 - Full Name
 - SAP ID (9 digits)
@@ -17,14 +17,14 @@
 
 ---
 
-## 🛠️ Local Setup
+🛠️ Local Setup
 
-```bash
+bash
 git clone https://github.com/CyberSentinel-UPES/Register-Page.git
 cd Register-Page
 
-# Create a .env file and add your Mongo URI
+Create a .env file and add your Mongo URI
 echo "MONGODB_URI=your_mongodb_connection_string" > .env
 
-# Install dependencies (if applicable)
+Install dependencies (if applicable)
 npm install
