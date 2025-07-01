@@ -1,0 +1,12 @@
+{
+  "name": "registration",
+  "version": "1.0.0",
+  "description": "Registration API for Vercel deployment",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "mongodb": "^6.17.0"
+  }
+}
