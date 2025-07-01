@@ -1,1 +1,30 @@
-open for contribution
+## ⚙️ Tech Stack
+
+| Frontend     | Backend/API      | Database     | Deployment  |
+|--------------|------------------|--------------|-------------|
+| HTML, TailwindCSS, JS | Vercel Serverless (Node.js) | MongoDB Atlas | Vercel |
+
+---
+
+## 📝 Form Fields
+
+- Full Name
+- SAP ID (9 digits)
+- Email Address
+- Phone Number (10 digits)
+- Preference 1, 2, 3 (team selection with dynamic filtering)
+- Year of Study
+
+---
+
+## 🛠️ Local Setup
+
+```bash
+git clone https://github.com/CyberSentinel-UPES/Register-Page.git
+cd Register-Page
+
+# Install dependencies (if using a build system)
+npm install
+
+# Create a .env file
+echo "MONGODB_URI=your_mongodb_connection_string" > .env
