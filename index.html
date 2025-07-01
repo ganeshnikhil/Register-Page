@@ -16,17 +16,21 @@
       background-size: 1.5em;
       padding-right: 2.5rem;
     }
+
     select:focus {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23EF4444' class='w-5 h-5'%3E%3Cpath fill-rule='evenodd' d='M5.22 8.72a.75.75 0 0 0 1.06 0L10 5.44l3.72 3.28a.75.75 0 1 0 1.06-1.06L10.53 3.97a.75.75 0 0 0-1.06 0L5.22 7.66a.75.75 0 0 0 0 1.06Z' clip-rule='evenodd' /%3E%3C/svg%3E");
     }
+
     select option[disabled]:first-child {
       color: rgba(255, 255, 255, 0.6);
     }
+
     select option {
       background-color: #1a202c;
       color: #ffffff;
       padding: 8px 16px;
     }
+
     select option:checked {
       background-color: #dc2626;
       color: #ffffff;
@@ -36,40 +40,34 @@
 <body class="bg-gradient-to-br from-blue-950 via-gray-900 to-red-950 min-h-screen flex items-center justify-center p-4">
   <div class="bg-gray-900 p-6 sm:p-8 rounded-3xl shadow-2xl w-full max-w-lg border-4 border-red-600">
     <div class="flex justify-center mb-6">
-      <img src="https://e0epirzgtkpbm5hx.public.blob.vercel-storage.com/logo-Q3qn6gpZKaQWYZFglJhKHzVW5IywWj.jpg"
+      <img
+        src="https://e0epirzgtkpbm5hx.public.blob.vercel-storage.com/logo-Q3qn6gpZKaQWYZFglJhKHzVW5IywWj.jpg"
         alt="Logo"
-        class="w-24 h-24 object-contain rounded-full shadow-xl ring-4 ring-red-500 hover:scale-105 transition-transform duration-300" />
+        class="w-24 h-24 object-contain rounded-full shadow-xl ring-4 ring-red-500 hover:scale-105 transition-transform duration-300"
+      />
     </div>
 
     <h2 class="text-3xl font-extrabold text-center text-white mb-8">Registration Form</h2>
 
     <form id="registrationForm" class="space-y-6 text-white">
       <input type="text" name="name" placeholder="Full Name" required
-        class="w-full bg-gray-800 border-2 border-red-600 rounded-xl px-4 py-3 text-white placeholder-gray-400" />
+        class="w-full bg-gray-800 border-2 border-red-600 rounded-xl px-4 py-3" />
 
       <input type="text" name="sapid" placeholder="SAP ID" required
-        class="w-full bg-gray-800 border-2 border-red-600 rounded-xl px-4 py-3 text-white placeholder-gray-400" />
+        class="w-full bg-gray-800 border-2 border-red-600 rounded-xl px-4 py-3" />
 
       <input type="email" name="email" placeholder="Personal Email" required
-        class="w-full bg-gray-800 border-2 border-red-600 rounded-xl px-4 py-3 text-white placeholder-gray-400" />
+        class="w-full bg-gray-800 border-2 border-red-600 rounded-xl px-4 py-3" />
 
-      <select name="preference1" required
-        class="preference w-full bg-gray-800 border-2 border-red-600 rounded-xl px-4 py-3 text-white">
-        <option value="" disabled selected>Select Preference 1</option>
-      </select>
+      <input type="tel" name="phoneNumber" placeholder="Phone Number" required
+        class="w-full bg-gray-800 border-2 border-red-600 rounded-xl px-4 py-3" />
 
-      <select name="preference2" required
-        class="preference w-full bg-gray-800 border-2 border-red-600 rounded-xl px-4 py-3 text-white">
-        <option value="" disabled selected>Select Preference 2</option>
-      </select>
-
-      <select name="preference3" required
-        class="preference w-full bg-gray-800 border-2 border-red-600 rounded-xl px-4 py-3 text-white">
-        <option value="" disabled selected>Select Preference 3</option>
-      </select>
+      <select name="preference1" required class="w-full bg-gray-800 border-2 border-red-600 rounded-xl px-4 py-3"></select>
+      <select name="preference2" required class="w-full bg-gray-800 border-2 border-red-600 rounded-xl px-4 py-3"></select>
+      <select name="preference3" required class="w-full bg-gray-800 border-2 border-red-600 rounded-xl px-4 py-3"></select>
 
       <select name="year" required
-        class="w-full bg-gray-800 border-2 border-red-600 rounded-xl px-4 py-3 text-white">
+        class="w-full bg-gray-800 border-2 border-red-600 rounded-xl px-4 py-3">
         <option value="" disabled selected>Year of Study</option>
         <option value="1">1st Year</option>
         <option value="2">2nd Year</option>
@@ -87,11 +85,7 @@
   </div>
 
   <script>
-    const preference1 = document.querySelector('select[name="preference1"]');
-    const preference2 = document.querySelector('select[name="preference2"]');
-    const preference3 = document.querySelector('select[name="preference3"]');
-
-    const teamOptions = [
+    const teams = [
       "Technical Team",
       "Public Relations Team",
       "Events Team",
@@ -101,32 +95,40 @@
       "Operations Team"
     ];
 
-    function populateSelect(select, options, selected) {
-      const placeholder = select.querySelector('option[disabled]');
-      select.innerHTML = '';
-      select.appendChild(placeholder.cloneNode(true));
+    const preference1 = document.querySelector('select[name="preference1"]');
+    const preference2 = document.querySelector('select[name="preference2"]');
+    const preference3 = document.querySelector('select[name="preference3"]');
 
-      options.forEach(opt => {
-        const option = document.createElement('option');
-        option.value = opt;
-        option.textContent = opt;
-        if (selected === opt) option.selected = true;
-        select.appendChild(option);
+    function populateOptions(select, excluded, selectedVal = "") {
+      select.innerHTML = "";
+      const placeholder = document.createElement("option");
+      placeholder.disabled = true;
+      placeholder.selected = selectedVal === "";
+      placeholder.value = "";
+      placeholder.textContent = `Select ${select.name}`;
+      select.appendChild(placeholder);
+
+      teams.forEach(team => {
+        if (!excluded.includes(team)) {
+          const opt = document.createElement("option");
+          opt.value = team;
+          opt.textContent = team;
+          if (team === selectedVal) opt.selected = true;
+          select.appendChild(opt);
+        }
       });
     }
 
     function updatePreferences() {
       const val1 = preference1.value;
       const val2 = preference2.value;
-
-      populateSelect(preference2, teamOptions.filter(opt => opt !== val1), val2);
-      populateSelect(preference3, teamOptions.filter(opt => opt !== val1 && opt !== val2), preference3.value);
+      populateOptions(preference2, [val1], val2);
+      populateOptions(preference3, [val1, val2], preference3.value);
     }
 
-    // Initial load
-    [preference1, preference2, preference3].forEach(select => {
-      populateSelect(select, teamOptions, "");
-    });
+    populateOptions(preference1, []);
+    populateOptions(preference2, []);
+    populateOptions(preference3, []);
 
     preference1.addEventListener("change", updatePreferences);
     preference2.addEventListener("change", updatePreferences);
@@ -138,6 +140,7 @@
         name: this.name.value,
         sapid: this.sapid.value,
         email: this.email.value,
+        phoneNumber: this.phoneNumber.value,
         preference1: this.preference1.value,
         preference2: this.preference2.value,
         preference3: this.preference3.value,
@@ -152,6 +155,10 @@
         return alert("Invalid email format.");
       }
 
+      if (!/^[0-9]{10}$/.test(data.phoneNumber)) {
+        return alert("Phone Number must be exactly 10 digits.");
+      }
+
       try {
         const res = await fetch("/api/register", {
           method: "POST",
@@ -162,6 +169,11 @@
         const result = await res.json();
         document.getElementById("responseMsg").textContent = result.message;
         if (res.ok) this.reset();
+
+        // Repopulate dropdowns after form reset
+        populateOptions(preference1, []);
+        populateOptions(preference2, []);
+        populateOptions(preference3, []);
       } catch (err) {
         console.error(err);
         document.getElementById("responseMsg").textContent = "Network error.";
