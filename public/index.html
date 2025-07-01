@@ -167,13 +167,17 @@
         });
 
         const result = await res.json();
-        document.getElementById("responseMsg").textContent = result.message;
-        if (res.ok) this.reset();
+        if (res.ok) {
+          window.location.href = "/success.html"; // ✅ Redirect to success page
+        } else {
+          document.getElementById("responseMsg").textContent = result.message;
+        }
 
         // Repopulate dropdowns after form reset
         populateOptions(preference1, []);
         populateOptions(preference2, []);
         populateOptions(preference3, []);
+        
       } catch (err) {
         console.error(err);
         document.getElementById("responseMsg").textContent = "Network error.";
