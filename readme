@@ -1,8 +1,8 @@
 ## ⚙️ Tech Stack
 
-| Frontend     | Backend/API      | Database     | Deployment  |
-|--------------|------------------|--------------|-------------|
-| HTML, TailwindCSS, JS | Vercel Serverless (Node.js) | MongoDB Atlas | Vercel |
+| Frontend             | Backend/API                  | Database       | Deployment |
+|----------------------|------------------------------|----------------|------------|
+| HTML, TailwindCSS, JS | Vercel Serverless (Node.js) | MongoDB Atlas  | Vercel     |
 
 ---
 
@@ -23,8 +23,8 @@
 git clone https://github.com/CyberSentinel-UPES/Register-Page.git
 cd Register-Page
 
-# Install dependencies (if using a build system)
-npm install
-
-# Create a .env file
+# Create a .env file and add your Mongo URI
 echo "MONGODB_URI=your_mongodb_connection_string" > .env
+
+# Install dependencies (if applicable)
+npm install
